@@ -27,13 +27,13 @@ public class ContactAgrupationController {
 		return ApiResponse.builder().code(201).message("Create Contact").build();
 	}
 
-	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ApiResponse getAll() {
-		return ApiResponse.builder().code(200).message("Get List").build();
+	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{id}")
+	public ApiResponse delete(@PathVariable("id") String id) {
+		return ApiResponse.builder().code(200).message("Delete Contact").build();
 	}
 
-	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{id}")
-	public ApiResponse remove(@PathVariable("id") String id) {
-		return ApiResponse.builder().code(200).message("Delete Contact").build();
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ApiResponse read() {
+		return ApiResponse.builder().code(200).message("Get List").build();
 	}
 }
