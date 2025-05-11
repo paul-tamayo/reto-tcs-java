@@ -1,4 +1,4 @@
-package com.tcs.reto.dto;
+package com.tcs.reto.actions;
 
 import lombok.Builder;
 
