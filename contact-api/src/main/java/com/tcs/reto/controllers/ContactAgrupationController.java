@@ -35,6 +35,6 @@ public class ContactAgrupationController {
 	@DeleteMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE }, value = "{id}")
 	public ApiResponse remove(@PathVariable String id) {
-		return ApiResponse.builder().code(200).message("Create Contact").build();
+		return ApiResponse.builder().code(200).message("Delete Contact").build();
 	}
 }
