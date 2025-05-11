@@ -1,4 +1,4 @@
-package com.tcs.reto.actions;
+package com.tcs.reto.bindings;
 
 import lombok.Builder;
 

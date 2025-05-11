@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tcs.reto.actions.ApiResponse;
-import com.tcs.reto.actions.ContactEntry;
+import com.tcs.reto.bindings.ApiResponse;
+import com.tcs.reto.bindings.ContactEntry;
 import com.tcs.reto.enums.ContactTypeEnum;
 import com.tcs.reto.services.ContactAgrupationService;
 
