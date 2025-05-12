@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class ContactAgrupationServiceImpl implements ContactAgrupationService {
 
-	private final ContactPhoneService contactPhoneService;
-
 	private final ContactAccountService contactAccountService;
+
+	private final ContactPhoneService contactPhoneService;
 }

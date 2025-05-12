@@ -37,4 +37,17 @@ public class ContactAccountRepository {
 	public List<ContactAccount> findAll() {
 		return CONTACT_ACCOUNTS.stream().filter(c -> !c.isRemoved()).toList();
 	}
+
+	public ContactAccount update(int pk, String numero) {
+		ContactAccount account = null;
+		Optional<ContactAccount> accountOptional = CONTACT_ACCOUNTS.stream()
+				.filter(c -> !c.isRemoved() && c.getPk() == pk).findFirst();
+
+		if (accountOptional.isPresent()) {
+			account = accountOptional.get();
+			account.setNumero(numero);
+		}
+
+		return account;
+	}
 }

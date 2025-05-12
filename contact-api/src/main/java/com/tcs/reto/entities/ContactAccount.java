@@ -6,15 +6,15 @@ import lombok.Data;
 @Builder
 @Data
 public class ContactAccount {
-	
-	private int pk;
 
-	private String numero;
+	private String banco;
 
 	private String nombre;
 
-	private String banco;
-	
+	private String numero;
+
+	private int pk;
+
 	private boolean removed;
 
 }

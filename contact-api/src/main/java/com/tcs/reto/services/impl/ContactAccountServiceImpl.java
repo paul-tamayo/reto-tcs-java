@@ -17,12 +17,17 @@ public class ContactAccountServiceImpl implements ContactAccountService {
 	private final ContactAccountRepository repository;
 
 	@Override
+	public void delete(int pk) {
+		repository.delete(pk);
+	}
+
+	@Override
 	public List<ContactAccount> findAll() {
 		return repository.findAll();
 	}
 
 	@Override
-	public void delete(int pk) {
-		repository.delete(pk);
+	public ContactAccount update(int pk, String numero) {
+		return repository.update(pk, numero);
 	}
 }
