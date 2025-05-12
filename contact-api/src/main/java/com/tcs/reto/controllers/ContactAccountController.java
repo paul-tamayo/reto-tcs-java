@@ -23,9 +23,9 @@ public class ContactAccountController {
 
 	private final ContactAccountService service;
 
-	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{id}")
-	public ApiResponse delete(@PathVariable("id") int id) {
-		service.delete(id);
+	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{pk}")
+	public ApiResponse delete(@PathVariable("pk") int pk) {
+		service.delete(pk);
 
 		return ApiResponse.builder().code(200).message("Delete Contact").build();
 	}
