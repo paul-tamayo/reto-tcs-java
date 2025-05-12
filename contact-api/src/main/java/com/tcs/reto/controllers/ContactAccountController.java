@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tcs.reto.bindings.ApiResponse;
 import com.tcs.reto.entities.ContactAccount;
-import com.tcs.reto.enums.ContactTypeEnum;
 import com.tcs.reto.services.ContactAccountService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,8 +22,8 @@ public class ContactAccountController {
 
 	private final ContactAccountService service;
 
-	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{type}/{id}")
-	public ApiResponse delete(@PathVariable("type") ContactTypeEnum type, @PathVariable("id") int id) {
+	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{id}")
+	public ApiResponse delete(@PathVariable("id") int id) {
 		service.delete(id);
 
 		return ApiResponse.builder().code(200).message("Delete Contact").build();
@@ -33,7 +32,7 @@ public class ContactAccountController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ApiResponse read() {
 		List<ContactAccount> accounts = service.findAll();
-		
+
 		return ApiResponse.builder().code(200).message("Get List").data(accounts).build();
 	}
 }
