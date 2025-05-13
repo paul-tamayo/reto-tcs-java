@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +38,13 @@ public class ContactPhoneController {
 		List<ContactPhone> phones = service.findAll();
 
 		return ApiResponse.builder().code(200).message("Get List").data(phones).build();
+	}
+	
+	@PutMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{numeroCelular}/{numero}")
+	public ApiResponse update(@PathVariable("numeroCelular") String numeroCelular, @PathVariable("numero") String numero) {
+		int rows = service.updateNumber(numeroCelular, numero);
+
+		return ApiResponse.builder().code(200).message("Update Phone Account").data(rows).build();
 	}
 
 }

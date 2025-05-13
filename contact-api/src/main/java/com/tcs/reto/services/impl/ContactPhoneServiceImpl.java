@@ -3,6 +3,7 @@ package com.tcs.reto.services.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tcs.reto.entities.ContactPhone;
 import com.tcs.reto.repositories.ContactPhoneRepository;
@@ -21,7 +22,7 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 	@Override
 	public List<ContactPhone> findAll() {
 		log.info("Listando todos los contactos");
-		
+
 		List<ContactPhone> list = List.of();
 
 		try {
@@ -36,15 +37,29 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 	@Override
 	public void delete(String clave) {
 		log.info("Eliminando el la clave: {}", clave);
-		
+
 		boolean flag = repository.existsById(clave);
 
 		if (flag) {
 			repository.deleteById(clave);
 		} else {
 			log.error("El número ingresado no existe");
-			
+
 			throw new RuntimeException("El número ingresado no existe");
 		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = RuntimeException.class)
+	public int updateNumber(String numeroCelular, String newNumero) {		
+		int flag = repository.updateNumber(numeroCelular, newNumero);
+
+		if (flag >= 2) {
+			log.error("Se actualizaron {} registros", flag);
+
+			throw new RuntimeException(String.format("Se actualizaron %d registros", flag));
+		}
+
+		return flag;
 	}
 }
