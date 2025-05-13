@@ -20,6 +20,8 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 
 	@Override
 	public List<ContactPhone> findAll() {
+		log.info("Listando todos los contactos");
+		
 		List<ContactPhone> list = List.of();
 
 		try {
@@ -32,12 +34,16 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 	}
 
 	@Override
-	public void delete(String phoneNumber) {
-		boolean flag = repository.exist(phoneNumber);
+	public void delete(String clave) {
+		log.info("Eliminando el la clave: {}", clave);
+		
+		boolean flag = repository.existsById(clave);
 
 		if (flag) {
-			repository.delete(phoneNumber);
-		}else {
+			repository.deleteById(clave);
+		} else {
+			log.error("El número ingresado no existe");
+			
 			throw new RuntimeException("El número ingresado no existe");
 		}
 	}
