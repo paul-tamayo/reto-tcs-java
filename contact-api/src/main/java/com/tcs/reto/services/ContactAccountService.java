@@ -6,9 +6,9 @@ import com.tcs.reto.entities.ContactAccount;
 
 public interface ContactAccountService {
 
-	void delete(int pk);
+	void delete(Long pk);
 
 	List<ContactAccount> findAll();
 
-	ContactAccount update(int pk, String numero);
+	int update(Long pk, String numero);
 }

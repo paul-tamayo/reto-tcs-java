@@ -24,7 +24,7 @@ public class ContactAccountController {
 	private final ContactAccountService service;
 
 	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{pk}")
-	public ApiResponse delete(@PathVariable("pk") int pk) {
+	public ApiResponse delete(@PathVariable("pk") Long pk) {
 		service.delete(pk);
 
 		return ApiResponse.builder().code(200).message("Delete Contact").build();
@@ -38,9 +38,9 @@ public class ContactAccountController {
 	}
 
 	@PutMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "{pk}/{numero}")
-	public ApiResponse update(@PathVariable("pk") int pk, @PathVariable("numero") String numero) {
-		ContactAccount account = service.update(pk, numero);
+	public ApiResponse update(@PathVariable("pk") Long pk, @PathVariable("numero") String numero) {
+		int rows = service.update(pk, numero);
 
-		return ApiResponse.builder().code(200).message("Get List").data(account).build();
+		return ApiResponse.builder().code(200).message("Get List").data(rows).build();
 	}
 }
