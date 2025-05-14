@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tcs.reto.dto.ContactDto;
 import com.tcs.reto.entities.ContactPhone;
+import com.tcs.reto.enums.ContactTypeEnum;
 import com.tcs.reto.repositories.ContactPhoneRepository;
 import com.tcs.reto.services.ContactPhoneService;
 
@@ -20,7 +22,7 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 	private final ContactPhoneRepository repository;
 
 	@Override
-	public List<ContactPhone> findAll() {
+	public List<ContactDto> findAll() {
 		log.info("Listando todos los contactos");
 
 		List<ContactPhone> list = List.of();
@@ -31,7 +33,11 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 			log.error(ex.getMessage(), ex);
 		}
 
-		return list;
+		return list.stream()
+				.map(contact -> ContactDto.builder().nombre(contact.getNombrePropietario())
+						.nombreBanco(contact.getNombreDelBanco()).numeroCuenta(contact.getNumeroCuenta())
+						.tipo(ContactTypeEnum.PHONE).build())
+				.toList();
 	}
 
 	@Override
@@ -51,7 +57,7 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 
 	@Override
 	@Transactional(rollbackFor = RuntimeException.class)
-	public int updateNumber(String numeroCelular, String newNumero) {		
+	public int updateNumber(String numeroCelular, String newNumero) {
 		int flag = repository.updateNumber(numeroCelular, newNumero);
 
 		if (flag >= 2) {

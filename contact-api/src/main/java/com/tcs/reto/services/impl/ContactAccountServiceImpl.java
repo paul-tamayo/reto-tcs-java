@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tcs.reto.entities.ContactAccount;
+import com.tcs.reto.dto.ContactDto;
+import com.tcs.reto.enums.ContactTypeEnum;
 import com.tcs.reto.repositories.ContactAccountRepository;
 import com.tcs.reto.services.ContactAccountService;
 
@@ -22,22 +23,25 @@ public class ContactAccountServiceImpl implements ContactAccountService {
 	@Override
 	public void delete(Long pk) {
 		log.info("Deleting contact account with pk: {}", pk);
-		
-		repository.deleteById( pk);
+
+		repository.deleteById(pk);
 	}
 
 	@Override
-	public List<ContactAccount> findAll() {
+	public List<ContactDto> findAll() {
 		log.info("Finding all contact accounts");
-		
-		return repository.findAll();
+
+		return repository.findAll().stream()
+				.map(contact -> ContactDto.builder().nombre(contact.getNombre()).nombreBanco(contact.getBanco())
+						.numeroCuenta(contact.getNumero()).tipo(ContactTypeEnum.ACCOUNT).build())
+				.toList();
 	}
 
 	@Override
 	@Transactional
 	public int update(Long pk, String numero) {
 		log.info("Updating contact account with pk: {} and numero: {}", pk, numero);
-		
+
 		return repository.updateNumber(pk, numero);
 	}
 }

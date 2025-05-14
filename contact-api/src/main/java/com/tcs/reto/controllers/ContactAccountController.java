@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tcs.reto.bindings.ApiResponse;
-import com.tcs.reto.entities.ContactAccount;
+import com.tcs.reto.dto.ContactDto;
 import com.tcs.reto.services.ContactAccountService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class ContactAccountController {
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ApiResponse read() {
-		List<ContactAccount> accounts = service.findAll();
+		List<ContactDto> accounts = service.findAll();
 
 		return ApiResponse.builder().code(200).message("Get List").data(accounts).build();
 	}

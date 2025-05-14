@@ -2,11 +2,11 @@ package com.tcs.reto.services;
 
 import java.util.List;
 
-import com.tcs.reto.entities.ContactPhone;
+import com.tcs.reto.dto.ContactDto;
 
 public interface ContactPhoneService {
 
-	List<ContactPhone> findAll();
+	List<ContactDto> findAll();
 
 	void delete(String phoneNumber);
 
