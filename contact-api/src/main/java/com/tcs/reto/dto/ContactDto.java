@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class ContactDto {
 
-	private String nombre;
+	private String name;
 
 	private String nombreBanco;
 

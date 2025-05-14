@@ -32,7 +32,7 @@ public class ContactAccountServiceImpl implements ContactAccountService {
 		log.info("Finding all contact accounts");
 
 		return repository.findAll().stream()
-				.map(contact -> ContactDto.builder().nombre(contact.getNombre()).nombreBanco(contact.getBanco())
+				.map(contact -> ContactDto.builder().name(contact.getNombre()).nombreBanco(contact.getBanco())
 						.numeroCuenta(contact.getNumero()).tipo(ContactTypeEnum.ACCOUNT).build())
 				.toList();
 	}

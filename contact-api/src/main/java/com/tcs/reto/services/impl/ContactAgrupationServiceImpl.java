@@ -32,7 +32,7 @@ public class ContactAgrupationServiceImpl implements ContactAgrupationService {
 		contacts.addAll(phones);
 		contacts.addAll(accounts);
 
-		return contacts.stream().sorted(Comparator.comparing(ContactDto::getNombre))
-				.collect(Collectors.groupingBy(s -> s.getNombre().charAt(0)));
+		return contacts.stream().sorted(Comparator.comparing(ContactDto::getName))
+				.collect(Collectors.groupingBy(s -> s.getName().charAt(0)));
 	}
 }

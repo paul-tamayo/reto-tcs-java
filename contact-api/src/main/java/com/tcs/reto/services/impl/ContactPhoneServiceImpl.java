@@ -1,6 +1,7 @@
 package com.tcs.reto.services.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,8 +34,8 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 			log.error(ex.getMessage(), ex);
 		}
 
-		return list.stream()
-				.map(contact -> ContactDto.builder().nombre(contact.getNombrePropietario())
+		return list.stream().filter(contact -> Objects.nonNull(contact.getNombrePropietario()) && !contact.getNombrePropietario().isBlank())
+				.map(contact -> ContactDto.builder().name(contact.getNombrePropietario())
 						.nombreBanco(contact.getNombreDelBanco()).numeroCuenta(contact.getNumeroCuenta())
 						.tipo(ContactTypeEnum.PHONE).build())
 				.toList();
