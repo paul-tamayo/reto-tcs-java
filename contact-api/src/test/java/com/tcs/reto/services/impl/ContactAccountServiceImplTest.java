@@ -1,9 +1,11 @@
 package com.tcs.reto.services.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -30,11 +32,11 @@ class ContactAccountServiceImplTest {
 	@Test
 	void testDelete() {
 		Long pk = 1L;
-		lenient().when(repository.findById(pk)).thenReturn(java.util.Optional.of(ContactAccount.builder().build()));
+		doNothing().when(repository).deleteById(pk);
 
 		contactAccountService.delete(pk);
 
-		assertNotNull(contactAccountService);
+		assertTrue(true);
 	}
 
 	@Test
@@ -51,8 +53,8 @@ class ContactAccountServiceImplTest {
 	void testUpdate() {
 		when(repository.updateNumber(any(), any())).thenReturn(1);
 
-		contactAccountService.update(123l, "2005698715");
+		int rows = contactAccountService.update(123l, "2005698715");
 
-		assertNotNull(contactAccountService);
+		assertEquals(1, rows);
 	}
 }

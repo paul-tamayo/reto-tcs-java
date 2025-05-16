@@ -34,25 +34,30 @@ class ContactAccountControllerTest {
 	void testDelete() throws Exception {
 		doNothing().when(service).delete(any());
 
-		mvc.perform(delete("/contact-account/1")).andExpect(status().isOk()).andExpect(jsonPath("$.code").value(200))
-				.andExpect(jsonPath("$.message").value("Delete Contact"));
+		mvc.perform(delete("/contact-account/1"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.code").value(200))
+		.andExpect(jsonPath("$.message").value("Delete Contact"));
 	}
 
 	@Test
 	void testRead() throws Exception {
 		when(service.findAll()).thenReturn(List.of());
 
-		mvc.perform(get("/contact-account")).andExpect(status().isOk()).andExpect(jsonPath("$.code").value(200))
-				.andExpect(jsonPath("$.message").value("Get List"));
+		mvc.perform(get("/contact-account"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.code").value(200))
+		.andExpect(jsonPath("$.message").value("Get List"));
 	}
 
 	@Test
 	void testUpdate() throws Exception {
 		when(service.update(any(), any())).thenReturn(1);
 
-		mvc.perform(put("/contact-account/1/123456789")).andExpect(status().isOk())
-				.andExpect(jsonPath("$.code").value(200))
-				.andExpect(jsonPath("$.message").value("Update Account Number"));
+		mvc.perform(put("/contact-account/1/123456789"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.code").value(200))
+		.andExpect(jsonPath("$.message").value("Update Account Number"));
 	}
 
 }
