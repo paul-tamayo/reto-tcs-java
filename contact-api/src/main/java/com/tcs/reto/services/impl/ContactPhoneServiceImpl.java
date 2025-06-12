@@ -64,7 +64,7 @@ public class ContactPhoneServiceImpl implements ContactPhoneService {
 		if (flag >= 2) {
 			log.error("Se actualizaron {} registros", flag);
 
-			throw new RuntimeException(String.format("Se actualizaron %d registros", flag));
+			throw new RuntimeException("Se actualizaron %d registros".formatted(flag));
 		}
 
 		return flag;
